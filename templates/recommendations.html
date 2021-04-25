@@ -1,0 +1,27 @@
+{% extends "layout.html" %}
+{% block head %}
+{{ super() }}
+{% endblock %}
+{% block content %}
+<div class="filled-container">
+    <h2>Based on your interests, you might like...</h2>
+    <ul>
+        {% for item in recommendations %}
+        <li>{{ item }}</li>
+        {% endfor %}
+    </ul>
+    <br>
+
+    <form action="/visualize-recommendations" method="GET">
+        <input type="hidden" name="keyword" value="{{ keyword }}">
+        <input type="hidden" name="food1" value="{{ food1 }}">
+        <input type="hidden" name="food2" value="{{ food2 }}">
+        <input type="hidden" name="food3" value="{{ food3 }}">
+        <input type="hidden" name="recommendations" value="{{ recommendations }}">
+        <div class="horizontal-box">
+            <button type="submit">Visualize Recommendations</button>
+            <a href="/" class="button">Start Over</a>
+        </div>
+    </form>
+</div>
+{% endblock %}

@@ -1,0 +1,43 @@
+{% extends "layout.html" %}
+{% block head %}
+{{ super() }}
+{% endblock %}
+{% block content %}
+<div class="filled-container">
+    <h2>What are your favourite comfort foods?</h2>
+    <p>Choose up to three.</p>
+    <form action="/calculate-recommendations" method="GET">
+        <input type="hidden" name="keyword" value="{{ keyword }}">
+        <select id="food1" name="food1">
+            <option value="" selected></option>
+            {% for food in foods %}
+            <option value="{{ food }}">{{ food }}</option>
+            {% endfor %}
+        </select>
+        <select id="food2" name="food2">
+            <option value="" selected></option>
+            {% for food in foods %}
+            <option value="{{ food }}">{{ food }}</option>
+            {% endfor %}
+        </select>
+        <select id="food3" name="food3">
+            <option value="" selected></option>
+            {% for food in foods %}
+            <option value="{{ food }}">{{ food }}</option>
+            {% endfor %}
+        </select>
+        <div class="horizontal-box">
+            <button type="submit">Submit</button>
+            <a href="/comfort/keywords" class="button">Back</a>
+        </div>
+    </form>
+</div>
+<script src="{{ url_for('static', filename='script.js') }}"></script>
+{% with messages = get_flashed_messages() %}
+    {% if messages %}
+        {% for message in messages %}
+            <script>handleFlash('{{ message }}');</script>
+        {% endfor %}
+    {% endif %}
+{% endwith %}
+{% endblock %}

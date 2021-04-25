@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    {% block head %}
+    <meta charset="UTF-8">
+    <title>Food Finder</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;500&display=swap"
+          rel="stylesheet">
+    {% endblock %}
+</head>
+<body>
+<div class="filled-container">
+    <h1>Food Finder</h1>
+</div>
+{% block content %}
+{% endblock %}
+</body>
+</html>

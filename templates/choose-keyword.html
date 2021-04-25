@@ -1,0 +1,28 @@
+{% extends "layout.html" %}
+{% block head %}
+{{ super() }}
+{% endblock %}
+{% block content %}
+<div class="filled-container">
+    <h2>What keyword best describes your feelings/mood?</h2>
+    <form action="/foods" method="GET">
+        <select id="keyword" name="keyword">
+            {% for keyword in keywords %}
+            <option value="{{ keyword }}">{{ keyword }}</option>
+            {% endfor %}
+        </select>
+        <div class="horizontal-box">
+            <button type="submit">Next</button>
+            <a href="/" class="button">Back</a>
+        </div>
+    </form>
+</div>
+<script src="{{ url_for('static', filename='script.js') }}"></script>
+{% with messages = get_flashed_messages() %}
+    {% if messages %}
+        {% for message in messages %}
+            <script>handleFlash('{{ message }}');</script>
+        {% endfor %}
+    {% endif %}
+{% endwith %}
+{% endblock %}
