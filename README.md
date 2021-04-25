@@ -12,6 +12,8 @@ Dataset from https://www.kaggle.com/borapajo/food-choices. Manually cleaned.
 
 ## Usage
 
+0. Run main.py
+
 1. Select a mood
 ![Screen 1 preview](https://i.ibb.co/kGRQvhr/ss1.png)
 
