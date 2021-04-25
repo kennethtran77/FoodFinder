@@ -12,24 +12,31 @@ def recommend_comfort_foods(graph: ComfortFoodGraph, keyword: str, liked_foods: 
                             limit: int) -> list[str]:
     """Given a keyword and a set of liked foods, recommend a list of foods of at most
     length `limit` that do not contain any foods in the original set of foods.
-
-    Each recommended food will be associated with the given keyword in the graph.
     """
     recommended_foods = {}
+
+    # Get all foods
+    all_foods = graph.get_foods()
 
     # Get foods that at least one user is connected to with the given keyword (reason)
     foods_with_reasons = get_foods_with_reasons(graph, {keyword})
 
-    for food in foods_with_reasons:
+    for food in all_foods:
         for liked_food in liked_foods:
             # Ignore foods that were already in `liked_foods`
             if food not in liked_foods:
                 # Compare similarity between each liked food and potential foods to recommend
                 sim = get_similarity(graph, food, liked_food)
 
-                # Store the highest sim score between food and any liked food
+                # Get the highest sim score between food and any liked food
+                new_score = max(recommended_foods.get(food, 0), sim)
+
+                # Prioritize foods that are associated with the given reasons
+                if food in foods_with_reasons:
+                    new_score += 5
+
                 if sim > 0:
-                    recommended_foods[food] = max(recommended_foods.get(food, 0), sim)
+                    recommended_foods[food] = new_score
 
     # Sort by descending order
     sorted_recs = sorted(recommended_foods, key=recommended_foods.get, reverse=True)
