@@ -40,7 +40,7 @@ def construct_blueprint(comfort_graph: ComfortFoodGraph) -> Blueprint:
             return redirect(url_for('views.choose_keywords'))
 
         return render_template('choose-foods.html',
-                               foods=list(comfort_graph.get_vertices()),
+                               foods=list(comfort_graph.get_foods()),
                                keyword=keyword)
 
     @comfort_views.route('/calculate-recommendations')

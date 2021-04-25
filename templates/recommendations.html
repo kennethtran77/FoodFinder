@@ -5,11 +5,11 @@
 {% block content %}
 <div class="filled-container">
     <h2>Based on your interests, you might like...</h2>
-    <ul>
+    <ol>
         {% for item in recommendations %}
         <li>{{ item }}</li>
         {% endfor %}
-    </ul>
+    </ol>
     <br>
 
     <form action="/visualize-recommendations" method="GET">
