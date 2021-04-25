@@ -19,7 +19,7 @@ def visualize_comfort_food_recommendations(graph: ComfortFoodGraph) -> None:
     graph_nx = graph.to_networkx()
 
     # Fetch positioning for bipartite graph layout
-    left_or_top = graph.get_vertices()
+    left_or_top = graph.get_users()
     pos = nx.bipartite_layout(graph_nx, left_or_top)
 
     x_nodes = [pos[k][0] for k in graph_nx.nodes]
